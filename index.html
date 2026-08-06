@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMS Inceptors — DBRA CM Shri School</title>
+  <meta name="description" content="CMS Inceptors is the official Newsletter & Annual Magazine Committee of DBRA CM Shri School, Janakpuri." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ─── CURSOR ──────────────────────────────────────────────────── -->
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+
+<!-- ─── NAVBAR ──────────────────────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo" aria-label="CMS Inceptors Home">
+      <svg class="logo-star" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+        <path d="M11 0 L12.5 8.5 L21 11 L12.5 13.5 L11 22 L9.5 13.5 L1 11 L9.5 8.5 Z" fill="currentColor"/>
+      </svg>
+      <span>CMS Inceptors</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Our Work</a></li>
+      <li><a href="#why-join">Why Join</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#apply" class="nav-cta">
+      <span>Apply Now</span>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="#about">About</a>
+    <a href="#work">Our Work</a>
+    <a href="#why-join">Why Join</a>
+    <a href="#faq">FAQ</a>
+    <a href="#apply" class="mobile-cta">Apply Now →</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ────────────────────────────────────────────────────── -->
+<section class="hero" id="hero">
+  <div class="hero-noise" aria-hidden="true"></div>
+
+  <!-- giant decorative letters -->
+  <div class="hero-deco-letters" aria-hidden="true">
+    <span class="deco-l deco-c">C</span>
+    <span class="deco-l deco-m">M</span>
+    <span class="deco-l deco-s">S</span>
+  </div>
+
+  <!-- hand-drawn SVG scribbles -->
+  <svg class="scribble scribble-underline" viewBox="0 0 320 28" fill="none" aria-hidden="true" preserveAspectRatio="none">
+    <path d="M4 18 C60 6, 140 24, 220 10 C280 0, 310 20, 316 14" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8 22 C70 12, 160 26, 240 16 C295 8, 312 22, 314 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+  </svg>
+
+  <svg class="scribble scribble-circle" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+    <ellipse cx="60" cy="60" rx="54" ry="50" stroke="currentColor" stroke-width="3" stroke-dasharray="8 5" stroke-linecap="round" transform="rotate(-12 60 60)"/>
+  </svg>
+
+  <svg class="scribble scribble-arrow" viewBox="0 0 80 60" fill="none" aria-hidden="true">
+    <path d="M10 8 C20 5, 60 10, 68 30 C72 42, 60 52, 50 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <path d="M42 42 L50 48 L52 38" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <svg class="scribble scribble-star-deco" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+    <path d="M20 2 L22.5 15 L36 20 L22.5 25 L20 38 L17.5 25 L4 20 L17.5 15 Z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge reveal">
+      <span class="pulse-ring"></span>
+      Official Committee · DBRA CM Shri School · Janakpuri
+    </div>
+
+    <h1 class="hero-headline">
+      <span class="line-wrap"><span class="line-inner reveal">Every School</span></span>
+      <span class="line-wrap accent-line"><span class="line-inner reveal">Has Stories.</span>
+        <svg class="inline-scribble" viewBox="0 0 260 20" fill="none" aria-hidden="true" preserveAspectRatio="none">
+          <path d="M4 14 C50 4, 120 18, 200 8 C240 2, 254 14, 256 10" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="line-wrap italic-line"><span class="line-inner reveal">We Make Sure</span></span>
+      <span class="line-wrap italic-line dim-line"><span class="line-inner reveal">They're Never Forgotten.</span></span>
+    </h1>
+
+    <p class="hero-sub reveal">
+      The official Newsletter &amp; Annual Magazine Committee — where journalism,
+      design &amp; storytelling collide.
+    </p>
+
+    <div class="hero-actions reveal">
+      <a href="#apply" class="btn-primary">Join the Team</a>
+      <a href="#about" class="btn-ghost">See what we do ↓</a>
+    </div>
+  </div>
+
+  <!-- editorial ticker -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Newsletter Production</span><span class="tick-sep">✦</span>
+      <span>Annual Magazine</span><span class="tick-sep">✦</span>
+      <span>Graphic Design</span><span class="tick-sep">✦</span>
+      <span>Creative Writing</span><span class="tick-sep">✦</span>
+      <span>Storytelling</span><span class="tick-sep">✦</span>
+      <span>Editorial Design</span><span class="tick-sep">✦</span>
+      <span>Newsletter Production</span><span class="tick-sep">✦</span>
+      <span>Annual Magazine</span><span class="tick-sep">✦</span>
+      <span>Graphic Design</span><span class="tick-sep">✦</span>
+      <span>Creative Writing</span><span class="tick-sep">✦</span>
+      <span>Storytelling</span><span class="tick-sep">✦</span>
+      <span>Editorial Design</span><span class="tick-sep">✦</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT / WHAT WE DO / WHY JOIN — COMBINED SECTION ──────── -->
+<section class="about-combined section" id="about">
+  <div class="container">
+
+    <!-- Section label -->
+    <div class="split-label reveal">
+      <span class="label-tag">The Gist</span>
+      <div class="label-line"></div>
+    </div>
+
+    <!-- BIG statement -->
+    <h2 class="big-statement reveal">
+      We don't just publish.<br/>
+      <em>We build memories.</em>
+      <svg class="statement-scribble" viewBox="0 0 180 24" fill="none" aria-hidden="true" preserveAspectRatio="none">
+        <path d="M4 16 C40 4, 100 20, 160 8 C172 4, 178 14, 176 12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </h2>
+
+    <!-- Three cards: Who, What, Why -->
+    <div class="triple-cards">
+
+      <!-- WHO -->
+      <article class="tcard tcard--who reveal" tabindex="0">
+        <div class="tcard-top">
+          <span class="tcard-num">01</span>
+          <div class="tcard-icon-wrap">
+            <!-- Inline illustration: newspaper sketch -->
+            <svg class="tcard-illo" viewBox="0 0 90 90" fill="none" aria-hidden="true">
+              <rect x="10" y="14" width="70" height="62" rx="4" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M20 28 h50" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M20 38 h35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M20 46 h25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <rect x="54" y="34" width="24" height="20" rx="2" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M20 58 h50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+              <path d="M20 65 h38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+              <!-- hand-drawn star accent -->
+              <path d="M72 8 L73.2 12 L77 11.5 L74.2 14 L75.5 18 L72 15.8 L68.5 18 L69.8 14 L67 11.5 L70.8 12 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="tcard-title">Who Are We?</h3>
+        <p class="tcard-body">The creative publication committee of <strong>DBRA CM Shri School</strong> — documenting student journeys, celebrating achievements, and preserving memories through print and media.</p>
+        <div class="tcard-foot">
+          <span class="tcard-tag">Est. SOSE Inceptors → CMS Inceptors</span>
+        </div>
+      </article>
+
+      <!-- WHAT WE DO -->
+      <article class="tcard tcard--what reveal" tabindex="0">
+        <div class="tcard-top">
+          <span class="tcard-num">02</span>
+          <div class="tcard-icon-wrap">
+            <svg class="tcard-illo" viewBox="0 0 90 90" fill="none" aria-hidden="true">
+              <!-- Camera sketch -->
+              <rect x="12" y="28" width="66" height="44" rx="6" stroke="currentColor" stroke-width="2.5"/>
+              <circle cx="45" cy="50" r="14" stroke="currentColor" stroke-width="2.5"/>
+              <circle cx="45" cy="50" r="8" stroke="currentColor" stroke-width="1.8"/>
+              <rect x="24" y="18" width="18" height="12" rx="3" stroke="currentColor" stroke-width="2"/>
+              <circle cx="68" cy="38" r="4" stroke="currentColor" stroke-width="1.8"/>
+              <!-- scribble underline -->
+              <path d="M15 78 C30 74, 60 80, 75 76" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="tcard-title">What We Do</h3>
+        <ul class="tcard-list">
+          <li><span class="dot-accent">✦</span> Newsletter Production</li>
+          <li><span class="dot-accent">✦</span> Annual Magazine</li>
+          <li><span class="dot-accent">✦</span> Graphic Design</li>
+          <li><span class="dot-accent">✦</span> Creative Writing</li>
+          <li><span class="dot-accent">✦</span> Team Collaboration</li>
+        </ul>
+      </article>
+
+      <!-- WHY JOIN -->
+      <article class="tcard tcard--why reveal" tabindex="0">
+        <div class="tcard-top">
+          <span class="tcard-num">03</span>
+          <div class="tcard-icon-wrap">
+            <svg class="tcard-illo" viewBox="0 0 90 90" fill="none" aria-hidden="true">
+              <!-- Trophy / star sketch -->
+              <path d="M30 20 h30 v22 a15 15 0 0 1-30 0 Z" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M18 24 C18 24, 22 40, 30 42" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M72 24 C72 24, 68 40, 60 42" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M38 62 L36 76 L45 72 L54 76 L52 62" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M32 76 h26" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- star -->
+              <path d="M45 30 L46.2 34.5 L51 33.8 L47.8 37 L49.2 42 L45 39.5 L40.8 42 L42.2 37 L39 33.8 L43.8 34.5 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="tcard-title">Why Join?</h3>
+        <ul class="tcard-list">
+          <li><span class="dot-accent">✦</span> Build a real portfolio</li>
+          <li><span class="dot-accent">✦</span> Learn design &amp; journalism</li>
+          <li><span class="dot-accent">✦</span> Leadership &amp; teamwork</li>
+          <li><span class="dot-accent">✦</span> Published work on record</li>
+          <li><span class="dot-accent">✦</span> Recognition &amp; legacy</li>
+          <li><span class="dot-accent">✦</span> Creativity without limits</li>
+        </ul>
+      </article>
+
+    </div><!-- /triple-cards -->
+
+  </div>
+</section>
+
+<!-- ─── SKILLS MARQUEE ────────────────────────────────────────── -->
+<section class="skills-band" aria-label="Skills you'll learn">
+  <div class="skills-label reveal">Skills You'll Build</div>
+  <div class="marquee-outer" aria-hidden="true">
+    <div class="marquee-track marquee-forward">
+      <span>✍️ Creative Writing</span><span>🎨 Graphic Design</span>
+      <span>🖼️ Photoshop</span><span>📐 Canva</span><span>🎙️ Interviewing</span>
+      <span>📰 Editorial Design</span><span>💡 Creative Thinking</span><span>🏷️ Branding</span>
+      <span>✍️ Creative Writing</span><span>🎨 Graphic Design</span>
+      <span>🖼️ Photoshop</span><span>📐 Canva</span><span>🎙️ Interviewing</span>
+      <span>📰 Editorial Design</span><span>💡 Creative Thinking</span><span>🏷️ Branding</span>
+    </div>
+    <div class="marquee-track marquee-backward">
+      <span>📅 Content Planning</span><span>📏 Layout Design</span><span>📡 Journalism</span>
+      <span>🎬 Visual Storytelling</span><span>⏰ Time Management</span><span>🤝 Teamwork</span>
+      <span>💬 Communication</span><span>📋 Publication Workflow</span><span>🌟 Photo Editing</span>
+      <span>📅 Content Planning</span><span>📏 Layout Design</span><span>📡 Journalism</span>
+      <span>🎬 Visual Storytelling</span><span>⏰ Time Management</span><span>🤝 Teamwork</span>
+      <span>💬 Communication</span><span>📋 Publication Workflow</span><span>🌟 Photo Editing</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 3D FAN CAROUSEL — OUR WORK ───────────────────────────────
+     Scroll-driven 3D arc like weichie.com:
+     Section is pinned while scroll progress fans cards out from
+     a stacked center into a curved 3D arc with rotateY + translateX.
+─────────────────────────────────────────────────────────────── -->
+<section class="work-section" id="work" aria-labelledby="work-heading">
+
+  <!-- sticky header that stays visible during the pin -->
+  <div class="work-sticky-header">
+    <div class="container">
+      <div class="work-header-inner">
+        <div>
+          <div class="split-label">
+            <span class="label-tag">Our Work</span>
+            <div class="label-line"></div>
+          </div>
+          <h2 class="big-statement" id="work-heading" style="margin-bottom:0">
+            Stories already<br/><em>written in print.</em>
+          </h2>
+        </div>
+        <a href="https://sites.google.com/view/cmshrischool/newsletters?authuser=0"
+           target="_blank" rel="noopener noreferrer"
+           class="work-view-all">
+          View all editions
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- The scroll-pin container: tall enough to drive the animation -->
+  <div class="fan-scroll-driver" id="fan-driver">
+
+    <!-- The sticky viewport that stays fixed during scroll -->
+    <div class="fan-sticky" id="fan-sticky">
+
+      <!-- Progress bar -->
+      <div class="fan-progress-bar" id="fan-progress" aria-hidden="true">
+        <div class="fan-progress-fill" id="fan-fill"></div>
+      </div>
+
+      <!-- 3D stage -->
+      <div class="fan-stage" id="fan-stage" role="region" aria-label="Newsletter and magazine editions">
+
+        <!-- Card 0 — far left -->
+        <a class="fan-card" id="fan-card-0"
+           href="https://sites.google.com/view/cmshrischool/newsletters?authuser=0"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="December 2024 Edition — click to read">
+          <div class="fan-card-face fan-face--1">
+            <div class="fan-card-img">
+              <img src="December 2024 Edition-Cover Page-1.png" alt="December 2024 Edition cover page" />
+            </div>
+          </div>
+          <div class="fan-card-label">
+            <span class="fan-tag">Newsletter</span>
+            <span class="fan-title">December 2024 Edition</span>
+            <span class="fan-hint">Read online ↗</span>
+          </div>
+        </a>
+
+        <!-- Card 1 -->
+        <a class="fan-card" id="fan-card-1"
+           href="https://sites.google.com/view/cmshrischool/newsletters?authuser=0"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="May 2025 Edition — click to read">
+          <div class="fan-card-face fan-face--2">
+            <div class="fan-card-img">
+              <img src="May 2025 Edition-Cover Page-1.png" alt="May 2025 Edition cover page" />
+            </div>
+          </div>
+          <div class="fan-card-label">
+            <span class="fan-tag">Newsletter</span>
+            <span class="fan-title">May 2025 Edition</span>
+            <span class="fan-hint">Read online ↗</span>
+          </div>
+        </a>
+
+        <!-- Card 2 — CENTER (active) -->
+        <a class="fan-card fan-card--center" id="fan-card-2"
+           href="https://sites.google.com/view/cmshrischool/newsletters?authuser=0"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="AURA 2025-26 Annual Magazine — click to read">
+          <div class="fan-card-face fan-face--3">
+            <div class="fan-card-img">
+              <img src="AURA 2026-ANNUAL MAGAZINE-1.png" alt="AURA 2026 Annual Magazine cover" />
+            </div>
+          </div>
+          <div class="fan-card-label">
+            <span class="fan-tag">Annual Magazine</span>
+            <span class="fan-title">AURA 2025-26 — Annual Magazine</span>
+            <span class="fan-hint">Read online ↗</span>
+          </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a class="fan-card" id="fan-card-3"
+           href="https://sites.google.com/view/cmshrischool/newsletters?authuser=0"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="June 2025 Edition — click to read">
+          <div class="fan-card-face fan-face--4">
+            <div class="fan-card-img">
+              <img src="June 2025 Edition-Cover Page-1.png" alt="June 2025 Edition cover page" />
+            </div>
+          </div>
+          <div class="fan-card-label">
+            <span class="fan-tag">Newsletter</span>
+            <span class="fan-title">June 2025 Edition</span>
+            <span class="fan-hint">Read online ↗</span>
+          </div>
+        </a>
+
+        <!-- Card 4 — far right -->
+        <a class="fan-card" id="fan-card-4"
+           href="https://sites.google.com/view/cmshrischool/newsletters?authuser=0"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="October 2025 Edition — click to read">
+          <div class="fan-card-face fan-face--5">
+            <div class="fan-card-img">
+              <img src="October 2025 Edition-Cover Page-1.png" alt="October 2025 Edition cover page" />
+            </div>
+          </div>
+          <div class="fan-card-label">
+            <span class="fan-tag">Newsletter</span>
+            <span class="fan-title">October 2025 Edition</span>
+            <span class="fan-hint">Read online ↗</span>
+          </div>
+        </a>
+
+      </div><!-- /fan-stage -->
+
+      <!-- Dot nav -->
+      <div class="fan-dots" id="fan-dots" role="tablist" aria-label="Edition navigation">
+        <button class="fan-dot" role="tab" aria-selected="false" data-idx="0" aria-label="Card 1"></button>
+        <button class="fan-dot" role="tab" aria-selected="false" data-idx="1" aria-label="Card 2"></button>
+        <button class="fan-dot fan-dot--active" role="tab" aria-selected="true" data-idx="2" aria-label="Card 3 (current)"></button>
+        <button class="fan-dot" role="tab" aria-selected="false" data-idx="3" aria-label="Card 4"></button>
+        <button class="fan-dot" role="tab" aria-selected="false" data-idx="4" aria-label="Card 5"></button>
+      </div>
+
+      <!-- Scroll hint (shown only until animation starts) -->
+      <div class="fan-scroll-hint" id="fan-scroll-hint" aria-hidden="true">
+        <div class="fan-scroll-line"></div>
+        <span>scroll to explore</span>
+      </div>
+
+    </div><!-- /fan-sticky -->
+  </div><!-- /fan-driver -->
+
+</section>
+
+<!-- ─── WHY JOIN — FEATURE STRIP ──────────────────────────────── -->
+<section class="why-join section" id="why-join" aria-labelledby="wj-heading">
+  <div class="container">
+    <div class="split-label reveal">
+      <span class="label-tag">Six Good Reasons</span>
+      <div class="label-line"></div>
+    </div>
+    <h2 class="big-statement reveal" id="wj-heading">
+      This changes<br/><em>everything for you.</em>
+    </h2>
+    <div class="reasons-grid">
+      <article class="reason-card reveal" tabindex="0">
+        <div class="reason-num">01</div>
+        <svg class="reason-illo" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M12 52 L12 20 L32 8 L52 20 L52 52 Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M24 52 L24 36 h16 v16" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M20 28 h8 M36 28 h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3>Build Real Skills</h3>
+        <p>Writing, design, journalism — skills that outlast school.</p>
+      </article>
+      <article class="reason-card reveal" tabindex="0">
+        <div class="reason-num">02</div>
+        <svg class="reason-illo" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <rect x="10" y="14" width="44" height="36" rx="4" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M20 26 h24 M20 34 h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M44 44 L54 54" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="54" cy="54" r="4" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <h3>Strengthen Portfolio</h3>
+        <p>Published, official work you can proudly show in college applications.</p>
+      </article>
+      <article class="reason-card reveal" tabindex="0">
+        <div class="reason-num">03</div>
+        <svg class="reason-illo" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <circle cx="32" cy="22" r="12" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M18 50 C18 40, 46 40, 46 50" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M46 26 C52 22, 56 30, 50 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3>Better Communication</h3>
+        <p>Express ideas confidently through writing, visuals and storytelling.</p>
+      </article>
+      <article class="reason-card reveal" tabindex="0">
+        <div class="reason-num">04</div>
+        <svg class="reason-illo" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M32 10 L34.5 22 L46 20 L37 28 L42 40 L32 34 L22 40 L27 28 L18 20 L29.5 22 Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+          <circle cx="32" cy="32" r="6" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+        </svg>
+        <h3>Creativity Unleashed</h3>
+        <p>Turn your ideas into real newsletters and magazines the whole school reads.</p>
+      </article>
+      <article class="reason-card reveal" tabindex="0">
+        <div class="reason-num">05</div>
+        <svg class="reason-illo" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M32 10 v16 M22 18 l10-8 10 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="14" y="26" width="36" height="8" rx="4" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M20 34 v14 M32 34 v14 M44 34 v14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M14 48 h36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <h3>Lead Projects</h3>
+        <p>Coordinate teams, own timelines, manage publications — real leadership.</p>
+      </article>
+      <article class="reason-card reveal" tabindex="0">
+        <div class="reason-num">06</div>
+        <svg class="reason-illo" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M32 12 C18 12, 10 22, 10 32 C10 44, 22 54, 32 54 C42 54, 54 44, 54 32 C54 22, 46 12, 32 12 Z" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M24 32 L30 38 L40 26" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>Leave a Legacy</h3>
+        <p>Your work becomes a permanent part of the school's history. Forever.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ──────────────────────────────────────────────────────── -->
+<section class="faq section" id="faq" aria-labelledby="faq-heading">
+  <div class="container faq-container">
+    <div class="split-label reveal">
+      <span class="label-tag">FAQ</span>
+      <div class="label-line"></div>
+    </div>
+    <h2 class="big-statement reveal" id="faq-heading">
+      Quick answers.
+    </h2>
+    <div class="faq-list" role="list">
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a1">Who can join?<span class="faq-plus" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faq-a1" hidden>Students of <strong>Class 9 and Class 11</strong> of DBRA CM Shri School, Janakpuri.</div>
+      </div>
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a2">Do I need experience?<span class="faq-plus" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faq-a2" hidden>Not at all. <strong>Passion and the will to learn</strong> are all that's needed.</div>
+      </div>
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a3">What if I'm not a writer?<span class="faq-plus" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faq-a3" hidden>We have roles in <strong>design, editing, planning, writing</strong> and more — something for every talent.</div>
+      </div>
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a4">How much time does it take?<span class="faq-plus" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faq-a4" hidden>Primarily during <strong>meetings, school events and publication periods</strong>. Designed to fit around studies.</div>
+      </div>
+      <div class="faq-item reveal" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a5">Will this help my future?<span class="faq-plus" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faq-a5" hidden>Yes. Published work, design experience, leadership roles and a portfolio all <strong>strengthen college applications and career prospects</strong>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA STRIP ─────────────────────────────────────────────── -->
+<section class="cta-strip" aria-label="Call to action">
+  <div class="cta-strip-inner reveal">
+    <svg class="cta-scribble-left" viewBox="0 0 100 80" fill="none" aria-hidden="true">
+      <path d="M10 70 C20 40, 60 20, 90 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <path d="M78 8 L92 10 L86 22" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="cta-strip-text">
+      <h2>Ready to become<br/><em>part of our story?</em></h2>
+      <p>Every magazine begins with a blank page. <strong>The next idea could be yours.</strong></p>
+    </div>
+    <a href="#apply" class="btn-primary btn-primary--large">Apply Now →</a>
+    <svg class="cta-scribble-right" viewBox="0 0 100 80" fill="none" aria-hidden="true">
+      <path d="M90 70 C80 40, 40 20, 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <path d="M22 8 L8 10 L14 22" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ─── APPLICATION FORM ──────────────────────────────────────── -->
+<section class="apply section" id="apply" aria-labelledby="apply-heading">
+  <div class="container apply-container">
+
+    <div class="split-label reveal">
+      <span class="label-tag">Apply</span>
+      <div class="label-line"></div>
+    </div>
+    <h2 class="big-statement reveal" id="apply-heading">
+      Your story starts<br/><em>right here.</em>
+    </h2>
+
+    <form class="apply-form reveal" id="application-form" novalidate aria-label="CMS Inceptors Application Form">
+
+      <div class="form-group">
+        <label for="student-name">Full Name <span class="req" aria-label="required">*</span></label>
+        <input type="text" id="student-name" name="name" placeholder="Your full name" required autocomplete="name" aria-required="true" />
+        <span class="field-error" role="alert" aria-live="polite"></span>
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="student-class">Class <span class="req" aria-label="required">*</span></label>
+          <select id="student-class" name="class" required aria-required="true">
+            <option value="" disabled selected>Select class</option>
+            <option value="9">Class 9</option>
+            <option value="11">Class 11</option>
+          </select>
+          <span class="field-error" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-group">
+          <label for="student-section">Section <span class="req" aria-label="required">*</span></label>
+          <select id="student-section" name="section" required aria-required="true">
+            <option value="" disabled selected>Select section</option>
+            <option value="A">A</option><option value="B">B</option>
+            <option value="C">C</option><option value="D">D</option>
+            <option value="E">E</option><option value="F">F</option>
+          </select>
+          <span class="field-error" role="alert" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="student-skills">What you know &amp; can do <span class="req" aria-label="required">*</span></label>
+        <p class="field-hint">Your skills, expertise, hobbies — writing, design, art, anything!</p>
+        <textarea id="student-skills" name="skills" rows="4" placeholder="e.g. I'm skilled at Canva and love writing poems and short articles..." required aria-required="true"></textarea>
+        <span class="field-error" role="alert" aria-live="polite"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="student-files">
+          Upload your best work
+          <span class="optional-tag">(Optional)</span>
+        </label>
+        <div class="field-note-box">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v5M8 5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p><strong>Upload your best work — positions are limited.</strong> Include designs, sketches, poems, articles, artworks or any creative work. Max 5 files, 10 MB each.</p>
+        </div>
+        <div class="file-upload-area" id="file-drop-zone" tabindex="0" role="button" aria-label="Upload files — click or drag and drop">
+          <div class="file-upload-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" width="40" height="40"><path d="M24 32 V16 M16 24 l8-8 8 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="6" y="36" width="36" height="6" rx="3" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <strong>Drop files here or click to browse</strong>
+          <span>Designs · Sketches · Poems · Articles · Artworks</span>
+          <input type="file" id="student-files" name="files" multiple accept="image/*,.pdf,.doc,.docx,.txt,.psd,.ai,.sketch" aria-label="Upload your work samples" />
+        </div>
+        <div class="file-list" id="file-list" aria-live="polite" aria-label="Selected files"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="student-drive">Google Drive link <span class="optional-tag">(Optional)</span></label>
+        <p class="field-hint">If you have more work to showcase, add a Google Drive link here. Make sure the link is accessible.</p>
+        <input type="url" id="student-drive" name="drive_link" placeholder="https://drive.google.com/..." />
+      </div>
+
+      <div class="form-group">
+        <label for="student-motivation">Why do you want to join CMS Inceptors? <span class="req" aria-label="required">*</span></label>
+        <p class="field-hint">Share your motivation — what excites you about CMS Inceptors and what you'd bring to the team.</p>
+        <textarea id="student-motivation" name="motivation" rows="5" placeholder="e.g. I've always loved the school newsletter and dream of contributing to it. I want to bring my design skills to the team..." required aria-required="true"></textarea>
+        <span class="field-error" role="alert" aria-live="polite"></span>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="btn-primary btn-primary--large" id="submit-btn">
+          <span class="btn-text">Submit Application</span>
+          <span class="btn-loader" aria-hidden="true"></span>
+        </button>
+        <p class="form-fine-print">Your application will be reviewed by the CMS Inceptors team.</p>
+      </div>
+
+    </form>
+
+    <div class="form-success" id="form-success" hidden aria-live="polite" role="status">
+      <div class="success-star" aria-hidden="true">
+        <svg viewBox="0 0 60 60" fill="none" width="60" height="60"><path d="M30 4 L33 21 L50 19 L38 30 L44 48 L30 40 L16 48 L22 30 L10 19 L27 21 Z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>You're on your way!</h3>
+      <p>Application submitted. The CMS Inceptors team will reach out soon.</p>
+      <a href="#hero" class="btn-primary">Back to top ↑</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 0 L12.5 8.5 L21 11 L12.5 13.5 L11 22 L9.5 13.5 L1 11 L9.5 8.5 Z" fill="currentColor"/></svg>
+          <span>CMS Inceptors</span>
+        </div>
+        <p class="footer-tagline">"Creating stories today. Preserving memories forever."</p>
+        <p class="footer-school">Official Newsletter &amp; Annual Magazine Committee<br/>DBRA CM Shri School, Janakpuri</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer links">
+        <a href="#about">About</a>
+        <a href="#work">Our Work</a>
+        <a href="#why-join">Why Join</a>
+        <a href="#faq">FAQ</a>
+        <a href="#apply">Apply</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 CMS Inceptors · DBRA CM Shri School</p>
+      <a href="https://sites.google.com/view/cmshrischool/newsletters?authuser=0" target="_blank" rel="noopener noreferrer" class="footer-site-link">Visit School Site ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
