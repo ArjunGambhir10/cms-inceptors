@@ -158,7 +158,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       });
     });
 
-    // ── Sync dots on scroll ─────────────────────────────────
+    // ── Sync dots + labels on scroll ───────────────────────
     function getActiveIdx() {
       const center = stage.scrollLeft + stage.clientWidth / 2;
       let closest = 0, minDist = Infinity;
@@ -170,16 +170,29 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       return closest;
     }
 
-    function syncDots() {
+    function syncActive() {
       const idx = getActiveIdx();
       dots.forEach((d, i) => {
         d.classList.toggle('fan-dot--active', i === idx);
         d.setAttribute('aria-selected', String(i === idx));
       });
+      cards.forEach((card, i) => {
+        const label = card.querySelector('.fan-card-label');
+        if (!label) return;
+        if (i === idx) {
+          label.style.opacity       = '1';
+          label.style.transform     = 'translateY(0)';
+          label.style.pointerEvents = 'auto';
+        } else {
+          label.style.opacity       = '0';
+          label.style.transform     = 'translateY(6px)';
+          label.style.pointerEvents = 'none';
+        }
+      });
     }
 
-    stage.addEventListener('scroll', syncDots, { passive: true });
-    syncDots();
+    stage.addEventListener('scroll', syncActive, { passive: true });
+    syncActive();
 
     // ── Dot click — scroll to card ──────────────────────────
     dots.forEach((dot, i) => {
@@ -188,6 +201,8 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         if (!card) return;
         const cardCenter = card.offsetLeft + card.offsetWidth / 2;
         stage.scrollTo({ left: cardCenter - stage.clientWidth / 2, behavior: 'smooth' });
+        // sync labels after scroll animation (~400ms)
+        setTimeout(syncActive, 420);
       });
     });
 
