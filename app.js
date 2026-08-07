@@ -102,154 +102,221 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-/* ── 3D Fan Carousel ─────────────────────────────────────────────
-   Weichie.com-style scroll-driven 3D arc animation.
-   Cards fan out from a stacked center position as the user
-   scrolls through the pinned section.
+/* ── 3D Fan Carousel (desktop) + Horizontal Slider (mobile) ─────
+   ≤ 768px  → touch-friendly snap-scroll slider with drag + dots
+   >  768px → scroll-driven 3D arc fan animation
 ──────────────────────────────────────────────────────────────── */
-(function initFanCarousel() {
-  const driver     = document.getElementById('fan-driver');
-  const sticky     = document.getElementById('fan-sticky');
-  const fill       = document.getElementById('fan-fill');
+(function initCarousel() {
+  const driver = document.getElementById('fan-driver');
+  const sticky = document.getElementById('fan-sticky');
+  const stage  = document.querySelector('.fan-stage');
+  const fill   = document.getElementById('fan-fill');
   const scrollHint = document.getElementById('fan-scroll-hint');
-  const dots       = document.querySelectorAll('.fan-dot');
-  const cards      = document.querySelectorAll('.fan-card');
-  const TOTAL      = cards.length;   // 5 cards
+  const dots   = document.querySelectorAll('.fan-dot');
+  const cards  = document.querySelectorAll('.fan-card');
+  const TOTAL  = cards.length;
 
-  if (!driver || !sticky || window.innerWidth <= 640) return;
+  if (!driver || !sticky || !stage) return;
 
-  // ── Layout config ─────────────────────────────────────────────
-  // Each card's final resting position in the arc.
-  // Positions are defined as: { x (vw offset), rotY (deg), scale, z (px) }
-  // Center card = index 2.
-  const arcPositions = [
-    { x: -48, rotY:  42, scale: 0.78, z: -90 },   // far left
-    { x: -24, rotY:  22, scale: 0.88, z: -30 },   // left
-    { x:   0, rotY:   0, scale: 1.00, z:   0 },   // center
-    { x:  24, rotY: -22, scale: 0.88, z: -30 },   // right
-    { x:  48, rotY: -42, scale: 0.78, z: -90 },   // far right
-  ];
+  const IS_MOBILE = () => window.innerWidth <= 768;
 
-  // ── Lerp util ─────────────────────────────────────────────────
-  const lerp = (a, b, t) => a + (b - a) * t;
-  // Ease in-out cubic
-  const ease = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+  /* ══════════════════════════════════════════════════════════════
+     MOBILE — horizontal snap-scroll slider
+  ══════════════════════════════════════════════════════════════ */
+  function initMobileSlider() {
+    // Make sure any leftover inline transforms from a previous
+    // desktop init are cleared
+    cards.forEach(c => c.style.transform = '');
 
-  // ── Calculate scroll progress ─────────────────────────────────
-  function getProgress() {
-    const rect      = driver.getBoundingClientRect();
-    const driverH   = driver.offsetHeight;
-    const viewH     = window.innerHeight;
-    // progress 0 → 1 as the driver scrolls from entering viewport to leaving
-    const scrolled  = -rect.top;                 // px scrolled within driver
-    const scrollable = driverH - viewH;          // total scrollable px
-    return Math.max(0, Math.min(1, scrolled / scrollable));
-  }
+    // ── Drag to scroll ──────────────────────────────────────
+    let isDragging = false, startX = 0, scrollStart = 0, moved = false;
 
-  // ── Apply transforms ──────────────────────────────────────────
-  let currentProgress = 0;
-  let raf;
+    stage.addEventListener('mousedown', e => {
+      isDragging  = true;
+      moved       = false;
+      startX      = e.pageX - stage.offsetLeft;
+      scrollStart = stage.scrollLeft;
+      stage.classList.add('is-dragging');
+    });
+    stage.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      moved = true;
+      e.preventDefault();
+      stage.scrollLeft = scrollStart - (e.pageX - stage.offsetLeft - startX) * 1.4;
+    });
+    ['mouseup','mouseleave'].forEach(ev =>
+      stage.addEventListener(ev, () => {
+        isDragging = false;
+        stage.classList.remove('is-dragging');
+      })
+    );
 
-  function applyCards(progress) {
-    // progress: 0 = all stacked center, 1 = fully fanned
-    const eased = ease(progress);
-
-    // Update progress bar
-    if (fill) fill.style.width = (progress * 100) + '%';
-
-    // Active card index based on progress
-    const activeIdx = Math.round(eased * (TOTAL - 1));
-
-    cards.forEach((card, i) => {
-      const pos = arcPositions[i];
-
-      // Interpolate from stacked center (0,0,0,1) to arc position
-      const x     = lerp(0,     pos.x,    eased);
-      const rotY  = lerp(0,     pos.rotY, eased);
-      const sc    = lerp(0.92,  pos.scale, eased);
-      const z     = lerp(0,     pos.z,    eased);
-
-      // Additional: cards that are not active drop slightly
-      const isActive = i === activeIdx;
-      const yShift   = isActive ? 0 : lerp(0, 16, eased);
-
-      card.style.transform =
-        `translateX(${x}vw) translateZ(${z}px) translateY(${yShift}px) rotateY(${rotY}deg) scale(${sc})`;
-      card.style.zIndex    = isActive ? 10 : 5 - Math.abs(i - activeIdx);
-
-      // Active class for label visibility
-      card.classList.toggle('is-active', isActive);
+    // Prevent link navigation when the user was dragging
+    cards.forEach(card => {
+      card.addEventListener('click', e => {
+        if (moved) { e.preventDefault(); moved = false; }
+      });
     });
 
-    // Dots
+    // ── Sync dots on scroll ─────────────────────────────────
+    function getActiveIdx() {
+      const center = stage.scrollLeft + stage.clientWidth / 2;
+      let closest = 0, minDist = Infinity;
+      cards.forEach((card, i) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const dist = Math.abs(center - cardCenter);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      return closest;
+    }
+
+    function syncDots() {
+      const idx = getActiveIdx();
+      dots.forEach((d, i) => {
+        d.classList.toggle('fan-dot--active', i === idx);
+        d.setAttribute('aria-selected', String(i === idx));
+      });
+    }
+
+    stage.addEventListener('scroll', syncDots, { passive: true });
+    syncDots();
+
+    // ── Dot click — scroll to card ──────────────────────────
     dots.forEach((dot, i) => {
-      const active = i === activeIdx;
-      dot.classList.toggle('fan-dot--active', active);
-      dot.setAttribute('aria-selected', String(active));
+      dot.addEventListener('click', () => {
+        const card = cards[i];
+        if (!card) return;
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        stage.scrollTo({ left: cardCenter - stage.clientWidth / 2, behavior: 'smooth' });
+      });
     });
 
-    // Hide scroll hint once animation starts
-    if (scrollHint) scrollHint.classList.toggle('hidden', progress > 0.04);
-  }
-
-  // ── Smooth scroll loop ─────────────────────────────────────────
-  let targetProgress = 0;
-  let smoothProgress = 0;
-
-  function tick() {
-    targetProgress = getProgress();
-    smoothProgress += (targetProgress - smoothProgress) * 0.09;
-
-    if (Math.abs(smoothProgress - currentProgress) > 0.0002) {
-      currentProgress = smoothProgress;
-      applyCards(currentProgress);
+    // Scroll to center card on init
+    const centerCard = cards[Math.floor(TOTAL / 2)];
+    if (centerCard) {
+      stage.scrollLeft = centerCard.offsetLeft + centerCard.offsetWidth / 2 - stage.clientWidth / 2;
     }
-    raf = requestAnimationFrame(tick);
   }
 
-  // Start animation
-  applyCards(0);
-  tick();
+  /* ══════════════════════════════════════════════════════════════
+     DESKTOP — scroll-driven 3D arc fan
+  ══════════════════════════════════════════════════════════════ */
+  function initDesktopFan() {
+    const arcPositions = [
+      { x: -48, rotY:  42, scale: 0.78, z: -90 },
+      { x: -24, rotY:  22, scale: 0.88, z: -30 },
+      { x:   0, rotY:   0, scale: 1.00, z:   0 },
+      { x:  24, rotY: -22, scale: 0.88, z: -30 },
+      { x:  48, rotY: -42, scale: 0.78, z: -90 },
+    ];
 
-  // ── Dot clicks — jump to card by scrolling driver ─────────────
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const idx      = +dot.dataset.idx;
-      const fraction = TOTAL > 1 ? idx / (TOTAL - 1) : 0;
-      const driverH  = driver.offsetHeight;
-      const viewH    = window.innerHeight;
-      const target   = driver.offsetTop + fraction * (driverH - viewH);
-      window.scrollTo({ top: target, behavior: 'smooth' });
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const ease = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3) / 2;
+
+    function getProgress() {
+      const rect      = driver.getBoundingClientRect();
+      const driverH   = driver.offsetHeight;
+      const viewH     = window.innerHeight;
+      const scrolled  = -rect.top;
+      const scrollable = driverH - viewH;
+      return Math.max(0, Math.min(1, scrolled / scrollable));
+    }
+
+    let smoothProgress = 0, currentProgress = -1;
+
+    function applyCards(progress) {
+      const eased    = ease(progress);
+      const activeIdx = Math.round(eased * (TOTAL - 1));
+      if (fill) fill.style.width = (progress * 100) + '%';
+
+      cards.forEach((card, i) => {
+        const pos   = arcPositions[i];
+        const x     = lerp(0,    pos.x,    eased);
+        const rotY  = lerp(0,    pos.rotY, eased);
+        const sc    = lerp(0.92, pos.scale, eased);
+        const z     = lerp(0,    pos.z,    eased);
+        const yShift = (i === activeIdx) ? 0 : lerp(0, 16, eased);
+        card.style.transform = `translateX(${x}vw) translateZ(${z}px) translateY(${yShift}px) rotateY(${rotY}deg) scale(${sc})`;
+        card.style.zIndex    = (i === activeIdx) ? 10 : 5 - Math.abs(i - activeIdx);
+        card.classList.toggle('is-active', i === activeIdx);
+      });
+
+      dots.forEach((dot, i) => {
+        const active = i === activeIdx;
+        dot.classList.toggle('fan-dot--active', active);
+        dot.setAttribute('aria-selected', String(active));
+      });
+
+      if (scrollHint) scrollHint.classList.toggle('hidden', progress > 0.04);
+    }
+
+    function tick() {
+      const target = getProgress();
+      smoothProgress += (target - smoothProgress) * 0.09;
+      if (Math.abs(smoothProgress - currentProgress) > 0.0002) {
+        currentProgress = smoothProgress;
+        applyCards(currentProgress);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    applyCards(0);
+    tick();
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx      = +dot.dataset.idx;
+        const fraction = TOTAL > 1 ? idx / (TOTAL - 1) : 0;
+        const driverH  = driver.offsetHeight;
+        const viewH    = window.innerHeight;
+        window.scrollTo({ top: driver.offsetTop + fraction * (driverH - viewH), behavior: 'smooth' });
+      });
     });
-  });
 
-  // ── Keyboard nav ─────────────────────────────────────────────
-  document.addEventListener('keydown', e => {
-    const rect = driver.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight && rect.bottom > 0;
-    if (!inView) return;
+    document.addEventListener('keydown', e => {
+      const rect   = driver.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (!inView) return;
+      const curIdx  = Math.round(ease(getProgress()) * (TOTAL - 1));
+      const driverH = driver.offsetHeight;
+      const viewH   = window.innerHeight;
+      if (e.key === 'ArrowRight' && curIdx < TOTAL - 1) {
+        window.scrollTo({ top: driver.offsetTop + ((curIdx + 1) / (TOTAL - 1)) * (driverH - viewH), behavior: 'smooth' });
+        e.preventDefault();
+      }
+      if (e.key === 'ArrowLeft' && curIdx > 0) {
+        window.scrollTo({ top: driver.offsetTop + ((curIdx - 1) / (TOTAL - 1)) * (driverH - viewH), behavior: 'smooth' });
+        e.preventDefault();
+      }
+    });
 
-    const curIdx   = Math.round(ease(getProgress()) * (TOTAL - 1));
-    const driverH  = driver.offsetHeight;
-    const viewH    = window.innerHeight;
-
-    if (e.key === 'ArrowRight' && curIdx < TOTAL - 1) {
-      const frac = (curIdx + 1) / (TOTAL - 1);
-      window.scrollTo({ top: driver.offsetTop + frac * (driverH - viewH), behavior: 'smooth' });
-      e.preventDefault();
-    }
-    if (e.key === 'ArrowLeft' && curIdx > 0) {
-      const frac = (curIdx - 1) / (TOTAL - 1);
-      window.scrollTo({ top: driver.offsetTop + frac * (driverH - viewH), behavior: 'smooth' });
-      e.preventDefault();
-    }
-  });
-
-  // ── Cleanup on low-motion preference ─────────────────────────
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    cancelAnimationFrame(raf);
-    applyCards(1);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) applyCards(1);
   }
+
+  /* ══════════════════════════════════════════════════════════════
+     INIT — pick the right mode, re-run on resize
+  ══════════════════════════════════════════════════════════════ */
+  if (IS_MOBILE()) {
+    initMobileSlider();
+  } else {
+    initDesktopFan();
+  }
+
+  // Re-init on resize crossing the breakpoint
+  let wasMobile = IS_MOBILE();
+  window.addEventListener('resize', () => {
+    const nowMobile = IS_MOBILE();
+    if (nowMobile !== wasMobile) {
+      wasMobile = nowMobile;
+      // Clear inline styles set by desktop fan before switching
+      cards.forEach(c => {
+        c.style.transform = '';
+        c.style.zIndex    = '';
+      });
+      if (nowMobile) initMobileSlider();
+      else           initDesktopFan();
+    }
+  });
 }());
 
 /* ── FAQ accordion ─────────────────────────────────────────────── */
@@ -378,7 +445,7 @@ if (form) {
 
     // 4 — Send to Google Sheets (no-cors fetch)
     //     Falls back to showing success if URL not yet configured
-    if (SHEETS_URL && SHEETS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+    if (SHEETS_URL && SHEETS_URL !== 'https://script.google.com/macros/s/AKfycbwotdw4xlurK_ZYFZEDbW_t_09LDoJ4RgfeicUqqOWanNiYlqypwPFLfRDPb_RrqL9j/exec') {
       try {
         await fetch(SHEETS_URL, {
           method:  'POST',

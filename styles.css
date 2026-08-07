@@ -807,37 +807,99 @@ img { display: block; max-width: 100%; }
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
-/* ── Mobile: simple horizontal swipe fallback ─────────────────── */
-@media (max-width: 640px) {
-  .fan-scroll-driver { height: auto; }
-  .fan-sticky {
-    position: relative; height: auto;
-    padding-block: 32px 48px;
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE HORIZONTAL SLIDER  (≤ 768px)
+   The 3D fan is replaced with a clean snap-scroll card slider.
+   Desktop 3D animation is completely untouched above this block.
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Collapse the tall scroll-driver — no sticky pinning needed */
+  .fan-scroll-driver {
+    height: auto !important;
   }
+
+  /* Un-sticky the viewport */
+  .fan-sticky {
+    position: relative !important;
+    height: auto !important;
+    padding-block: 28px 56px;
+    overflow: visible;
+  }
+
+  /* Hide desktop-only chrome */
+  .fan-progress-bar,
+  .fan-scroll-hint { display: none !important; }
+
+  /* ── Slider track ─────────────────────────────────────────── */
   .fan-stage {
-    perspective: none;
-    height: auto; max-height: none;
-    overflow-x: auto; overflow-y: hidden;
-    justify-content: flex-start;
-    scroll-snap-type: x mandatory;
+    /* reset all 3D */
+    perspective: none !important;
+    transform-style: flat !important;
+    height: auto !important;
+    max-height: none !important;
+    /* horizontal scroll */
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch;
     gap: 16px;
-    padding-inline: clamp(20px, 5vw, 40px);
+    padding: 12px clamp(20px, 6vw, 40px) 20px;
     scrollbar-width: none;
+    cursor: grab;
   }
   .fan-stage::-webkit-scrollbar { display: none; }
+  .fan-stage.is-dragging { cursor: grabbing; }
+
+  /* ── Individual card ──────────────────────────────────────── */
   .fan-card {
-    position: relative;
-    flex-shrink: 0;
-    width: 200px;
+    /* override all JS-driven inline transforms */
+    transform: none !important;
+    position: relative !important;
+    flex-shrink: 0 !important;
+    width: 220px !important;
     scroll-snap-align: center;
+    z-index: 1 !important;
+    transition: box-shadow 0.25s ease !important;
+  }
+  .fan-card:active { cursor: grabbing; }
+
+  /* Card face — slightly smaller on mobile */
+  .fan-card-face {
+    border-radius: 16px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.1) !important;
+  }
+  .fan-card:hover .fan-card-face {
+    box-shadow: 0 12px 36px rgba(0,0,0,0.15) !important;
+  }
+
+  /* Labels always visible */
+  .fan-card-label {
+    opacity: 1 !important;
     transform: none !important;
   }
-  .fan-card-label { opacity: 1; transform: none; }
-  .fan-scroll-hint { display: none; }
-  .fan-progress-bar { display: none; }
-  .fan-dots { bottom: 12px; }
+
+  /* Dot nav repositioned below the slider */
+  .fan-dots {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    gap: 8px;
+  }
 }
+
+@media (max-width: 400px) {
+  .fan-card { width: 190px !important; }
+}
+
 
 .drag-hint {
   display: flex; align-items: center; gap: 8px;
