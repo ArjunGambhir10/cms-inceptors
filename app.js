@@ -443,7 +443,7 @@ if (form) {
     };
 
     // 4 — Send to Google Sheets
-    if (SHEETS_URL && SHEETS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+    if (SHEETS_URL && SHEETS_URL !== 'https://script.google.com/macros/s/AKfycbwPc28z1UpVFG98SAEbxBqufgV2JWw-luT_sA_IPt-nP2pYBLAlz-LhDQ4w-Aef6LBn/exec') {
       try {
         await fetch(SHEETS_URL, {
           method:  'POST',
