@@ -376,8 +376,7 @@ if (fileInput) {
 }
 
 /* ── Form validation & Google Sheets submission ──────────────── */
-// ▶ PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW
-const SHEETS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwPc28z1UpVFG98SAEbxBqufgV2JWw-luT_sA_IPt-nP2pYBLAlz-LhDQ4w-Aef6LBn/exec';
 
 const form      = document.getElementById('application-form');
 const submitBtn = document.getElementById('submit-btn');
@@ -443,20 +442,16 @@ if (form) {
       timestamp:  new Date().toLocaleString('en-IN'),
     };
 
-    // 4 — Send to Google Sheets (no-cors fetch)
-    //     Falls back to showing success if URL not yet configured
-    if (SHEETS_URL && SHEETS_URL !== 'https://script.google.com/macros/s/AKfycbwotdw4xlurK_ZYFZEDbW_t_09LDoJ4RgfeicUqqOWanNiYlqypwPFLfRDPb_RrqL9j/exec') {
+    // 4 — Send to Google Sheets
+    if (SHEETS_URL && SHEETS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
       try {
         await fetch(SHEETS_URL, {
           method:  'POST',
-          // no-cors because Apps Script redirects — response will be opaque, that's fine
           mode:    'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body:    JSON.stringify(payload),
         });
       } catch (err) {
-        // Network error — still show success so student isn't stuck,
-        // but log it for debugging
         console.warn('Sheets submission failed:', err);
       }
     }
