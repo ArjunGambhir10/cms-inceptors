@@ -735,10 +735,15 @@ img { display: block; max-width: 100%; }
 .fan-card-img:has(img) svg,
 .fan-card-img:has(img) .fan-card-placeholder-text { display: none; }
 
-/* Card label below face — always visible */
+/* Card label — hidden until JS reveals them at full fan-out */
 .fan-card-label {
   display: flex; flex-direction: column; gap: 2px;
   padding-inline: 4px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
   opacity: 1;
   transform: none;
 }

@@ -244,6 +244,9 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       const activeIdx = Math.round(eased * (TOTAL - 1));
       if (fill) fill.style.width = (progress * 100) + '%';
 
+      // Labels only visible once cards are fully fanned out (≥90% progress)
+      const labelsVisible = progress >= 0.9;
+
       cards.forEach((card, i) => {
         const pos   = arcPositions[i];
         const x     = lerp(0,    pos.x,    eased);
@@ -254,6 +257,14 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         card.style.transform = `translateX(${x}vw) translateZ(${z}px) translateY(${yShift}px) rotateY(${rotY}deg) scale(${sc})`;
         card.style.zIndex    = (i === activeIdx) ? 10 : 5 - Math.abs(i - activeIdx);
         card.classList.toggle('is-active', i === activeIdx);
+
+        // Show/hide label based on fan progress
+        const label = card.querySelector('.fan-card-label');
+        if (label) {
+          label.style.opacity       = labelsVisible ? '1' : '0';
+          label.style.transform     = labelsVisible ? 'translateY(0)' : 'translateY(8px)';
+          label.style.pointerEvents = labelsVisible ? 'auto' : 'none';
+        }
       });
 
       dots.forEach((dot, i) => {
