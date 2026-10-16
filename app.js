@@ -402,7 +402,7 @@ if (fileInput) {
 }
 
 /* ── Form validation & Google Sheets submission ──────────────── */
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwPc28z1UpVFG98SAEbxBqufgV2JWw-luT_sA_IPt-nP2pYBLAlz-LhDQ4w-Aef6LBn/exec';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzVOvO_bsZku8_r-fGEOVKcPGUe0Mns_kVXKai9NVAlUtUN4asjH3UbwTYrvGWJdnc_xQ/exec';
 
 const form      = document.getElementById('application-form');
 const submitBtn = document.getElementById('submit-btn');
@@ -469,7 +469,7 @@ if (form) {
     };
 
     // 4 — Send to Google Sheets
-    if (SHEETS_URL && SHEETS_URL !== 'https://script.google.com/macros/s/AKfycbwPc28z1UpVFG98SAEbxBqufgV2JWw-luT_sA_IPt-nP2pYBLAlz-LhDQ4w-Aef6LBn/exec') {
+    if (SHEETS_URL) {
       try {
         await fetch(SHEETS_URL, {
           method:  'POST',
@@ -482,7 +482,7 @@ if (form) {
       }
     }
 
-    // 5 — Always show success (data either sent or will be retried)
+    // 5 — Always show success
     showSuccess();
   });
 }
