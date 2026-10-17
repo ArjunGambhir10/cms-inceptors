@@ -479,14 +479,13 @@ if (form) {
       payload.files.push({ name: f.name, mime: f.type, data: b64 });
     }
 
-    // 4 — Send to Google Sheets
+    // 4 — Send to Google Sheets (via form-encoded to bypass CORS)
     if (SHEETS_URL) {
       try {
         await fetch(SHEETS_URL, {
           method:  'POST',
           mode:    'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify(payload),
+          body:    new URLSearchParams({ data: JSON.stringify(payload) }),
         });
       } catch (err) {
         console.warn('Sheets submission failed:', err);

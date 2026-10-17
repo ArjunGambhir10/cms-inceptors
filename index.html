@@ -548,93 +548,18 @@
       Your story starts<br/><em>right here.</em>
     </h2>
 
-    <form class="apply-form reveal" id="application-form" novalidate aria-label="CMS Inceptors Application Form">
-
-      <div class="form-group">
-        <label for="student-name">Full Name <span class="req" aria-label="required">*</span></label>
-        <input type="text" id="student-name" name="name" placeholder="Your full name" required autocomplete="name" aria-required="true" />
-        <span class="field-error" role="alert" aria-live="polite"></span>
-      </div>
-
-      <div class="form-row-2">
-        <div class="form-group">
-          <label for="student-class">Class <span class="req" aria-label="required">*</span></label>
-          <select id="student-class" name="class" required aria-required="true">
-            <option value="" disabled selected>Select class</option>
-            <option value="9">Class 9</option>
-            <option value="11">Class 11</option>
-          </select>
-          <span class="field-error" role="alert" aria-live="polite"></span>
-        </div>
-        <div class="form-group">
-          <label for="student-section">Section <span class="req" aria-label="required">*</span></label>
-          <select id="student-section" name="section" required aria-required="true">
-            <option value="" disabled selected>Select section</option>
-            <option value="A">A</option><option value="B">B</option>
-            <option value="C">C</option><option value="D">D</option>
-            <option value="E">E</option><option value="F">F</option>
-          </select>
-          <span class="field-error" role="alert" aria-live="polite"></span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="student-skills">What you know &amp; can do <span class="req" aria-label="required">*</span></label>
-        <p class="field-hint">Your skills, expertise, hobbies — writing, design, art, anything!</p>
-        <textarea id="student-skills" name="skills" rows="4" placeholder="e.g. I'm skilled at Canva and love writing poems and short articles..." required aria-required="true"></textarea>
-        <span class="field-error" role="alert" aria-live="polite"></span>
-      </div>
-
-      <div class="form-group">
-        <label for="student-files">
-          Upload your best work
-          <span class="optional-tag">(Optional)</span>
-        </label>
-        <div class="field-note-box">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v5M8 5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p><strong>Upload your best work — positions are limited.</strong> Include designs, sketches, poems, articles, artworks or any creative work. Max 5 files, 10 MB each.</p>
-        </div>
-        <div class="file-upload-area" id="file-drop-zone" tabindex="0" role="button" aria-label="Upload files — click or drag and drop">
-          <div class="file-upload-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" width="40" height="40"><path d="M24 32 V16 M16 24 l8-8 8 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="6" y="36" width="36" height="6" rx="3" stroke="currentColor" stroke-width="2"/></svg>
-          </div>
-          <strong>Drop files here or click to browse</strong>
-          <span>Designs · Sketches · Poems · Articles · Artworks</span>
-          <input type="file" id="student-files" name="files" multiple accept="image/*,.pdf,.doc,.docx,.txt,.psd,.ai,.sketch" aria-label="Upload your work samples" />
-        </div>
-        <div class="file-list" id="file-list" aria-live="polite" aria-label="Selected files"></div>
-      </div>
-
-      <div class="form-group">
-        <label for="student-drive">Google Drive link <span class="optional-tag">(Optional)</span></label>
-        <p class="field-hint">If you have more work to showcase, add a Google Drive link here. Make sure the link is accessible.</p>
-        <input type="url" id="student-drive" name="drive_link" placeholder="https://drive.google.com/..." />
-      </div>
-
-      <div class="form-group">
-        <label for="student-motivation">Why do you want to join CMS Inceptors? <span class="req" aria-label="required">*</span></label>
-        <p class="field-hint">Share your motivation — what excites you about CMS Inceptors and what you'd bring to the team.</p>
-        <textarea id="student-motivation" name="motivation" rows="5" placeholder="e.g. I've always loved the school newsletter and dream of contributing to it. I want to bring my design skills to the team..." required aria-required="true"></textarea>
-        <span class="field-error" role="alert" aria-live="polite"></span>
-      </div>
-
-      <div class="form-submit">
-        <button type="submit" class="btn-primary btn-primary--large" id="submit-btn">
-          <span class="btn-text">Submit Application</span>
-          <span class="btn-loader" aria-hidden="true"></span>
-        </button>
-        <p class="form-fine-print">Your application will be reviewed by the CMS Inceptors team.</p>
-      </div>
-
-    </form>
-
-    <div class="form-success" id="form-success" hidden aria-live="polite" role="status">
-      <div class="success-star" aria-hidden="true">
-        <svg viewBox="0 0 60 60" fill="none" width="60" height="60"><path d="M30 4 L33 21 L50 19 L38 30 L44 48 L30 40 L16 48 L22 30 L10 19 L27 21 Z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/></svg>
-      </div>
-      <h3>You're on your way!</h3>
-      <p>Application submitted. The CMS Inceptors team will reach out soon.</p>
-      <a href="#hero" class="btn-primary">Back to top ↑</a>
+    <div class="google-form-wrap reveal">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSddf7SdVddOxpqVlNVgBnfNL5vIAFyRN3FxwVUrtvD3phoeCA/viewform?embedded=true"
+        width="100%"
+        height="800"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="CMS Inceptors Application Form"
+        loading="lazy">
+        Loading…
+      </iframe>
     </div>
 
   </div>

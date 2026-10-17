@@ -1056,6 +1056,21 @@ img { display: block; max-width: 100%; }
   box-shadow: 5px 6px 0 var(--ink);
 }
 
+/* ── Google Form embed ───────────────────────────────────────── */
+.google-form-wrap {
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: var(--r-lg);
+  box-shadow: 5px 6px 0 var(--ink);
+  overflow: hidden;
+}
+.google-form-wrap iframe {
+  display: block;
+  width: 100%;
+  min-height: 800px;
+  border: none;
+}
+
 .form-group { display: flex; flex-direction: column; gap: 8px; }
 .form-row-2 {
   display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
