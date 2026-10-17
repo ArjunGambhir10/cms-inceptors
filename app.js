@@ -402,7 +402,7 @@ if (fileInput) {
 }
 
 /* ── Form validation & Google Sheets submission ──────────────── */
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzVOvO_bsZku8_r-fGEOVKcPGUe0Mns_kVXKai9NVAlUtUN4asjH3UbwTYrvGWJdnc_xQ/exec';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyuSASBF-5v7HXTqvHhW82JpAUj9ElfDDyeuysZvePjc_ynnpiBu_hwhsutyA8nF3Axvg/exec';
 
 const form      = document.getElementById('application-form');
 const submitBtn = document.getElementById('submit-btn');
