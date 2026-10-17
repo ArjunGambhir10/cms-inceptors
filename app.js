@@ -464,9 +464,20 @@ if (form) {
       skills:     form.querySelector('[name="skills"]').value.trim(),
       drive_link: form.querySelector('[name="drive_link"]').value.trim(),
       motivation: form.querySelector('[name="motivation"]').value.trim(),
-      files:      selectedFiles.map(f => f.name).join(', '),
       timestamp:  new Date().toLocaleString('en-IN'),
+      files:      [],
     };
+
+    // 3a — Convert each uploaded file to base64
+    for (const f of selectedFiles) {
+      const b64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload  = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(f);
+      });
+      payload.files.push({ name: f.name, mime: f.type, data: b64 });
+    }
 
     // 4 — Send to Google Sheets
     if (SHEETS_URL) {
@@ -482,7 +493,7 @@ if (form) {
       }
     }
 
-    // 5 — Always show success
+    // 5 — Show success
     showSuccess();
   });
 }
